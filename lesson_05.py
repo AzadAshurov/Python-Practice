@@ -1,35 +1,12 @@
-import logging
-import time
-logger = logging.getLogger(__name__)
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(name)s - %(message)s"
-)
+from pathlib import Path
 
-logging.info("This is an info message")
-logging.warning("This is a warning message")    
-logging.error("This is an error message")
-logging.critical("This is a critical message")
+data_dir = Path("data")
+data_dir.mkdir(parents=True, exist_ok=True)
 
+file_path = data_dir / "example.txt"
 
+file_path.write_text("Hello Python")
 
-
-def start_service():
-    logger.info("Service has started successfully")
-
-
-def load_model():
-    logger.info("Model has loaded successfully ")
-    logger.warning("Model response is slow")
-    logger.error("Model failed")
-
-
-def predict():
-    logger.info("Prediction completed successfully")
-
-
-start_service()
-load_model()
-predict()
-
-
+print(file_path.exists())
+print(file_path.is_file())
+print(file_path.read_text())
